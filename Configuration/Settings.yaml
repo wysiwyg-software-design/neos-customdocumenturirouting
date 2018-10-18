@@ -5,3 +5,13 @@ Flownative:
       uriPathPropertyName: 'uriPath'
       matchExcludePatterns:
         - '_Resources'
+
+Neos:
+  Flow:
+    http:
+      chain:
+        'process':
+          chain:
+            'redirectToFullNodeUri':
+              position: 'after Routing'
+              component: 'Flownative\Neos\CustomDocumentUriRouting\Routing\RedirectToFullNodeUrlComponent'
