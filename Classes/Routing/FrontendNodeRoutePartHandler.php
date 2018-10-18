@@ -11,8 +11,8 @@ namespace Flownative\Neos\CustomDocumentUriRouting\Routing;
  * source code.
  */
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\DBAL\FetchMode;
-use Doctrine\ORM\EntityManagerInterface;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\ContentRepository\Domain\Model\Workspace;
 use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
@@ -38,19 +38,19 @@ class FrontendNodeRoutePartHandler extends NeosFrontendNodeRoutePartHandler
     protected $supportEmptySegmentForDimensions;
 
     /**
-     * @Flow\InjectConfiguration(path="mixinNodeTypeName")
+     * @Flow\InjectConfiguration(path="mixinNodeTypeName", package="Flownative.Neos.CustomDocumentUriRouting")
      * @var string
      */
     protected $mixinNodeTypeName;
 
     /**
-     * @Flow\InjectConfiguration(path="uriPathPropertyName")
+     * @Flow\InjectConfiguration(path="uriPathPropertyName", package="Flownative.Neos.CustomDocumentUriRouting")
      * @var string
      */
     protected $uriPathPropertyName;
 
     /**
-     * @Flow\InjectConfiguration(path="matchExcludePatterns")
+     * @Flow\InjectConfiguration(path="matchExcludePatterns", package="Flownative.Neos.CustomDocumentUriRouting")
      * @var array
      */
     protected $matchExcludePatterns;
@@ -63,7 +63,7 @@ class FrontendNodeRoutePartHandler extends NeosFrontendNodeRoutePartHandler
 
     /**
      * @Flow\Inject
-     * @var EntityManagerInterface
+     * @var ObjectManager
      */
     protected $entityManager;
 
