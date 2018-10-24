@@ -9,7 +9,7 @@
           group: 'document'
       validation:
         'Neos.Neos/Validation/StringLengthValidator':
-          minimum: 1
+          minimum: 0
           maximum: 255
         'Neos.Neos/Validation/RegularExpressionValidator':
           regularExpression: '/^[a-z0-9\/\-]+$/i'
