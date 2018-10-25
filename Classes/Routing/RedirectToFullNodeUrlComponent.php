@@ -63,7 +63,8 @@ class RedirectToFullNodeUrlComponent implements ComponentInterface
         }
 
         $uriPath = $componentContext->getHttpRequest()->getUri()->getPath();
-        if (preg_match('~/' . preg_quote($fullUriPath, '~') . '(.html)?$~', $uriPath, $matches) === 1) {
+
+        if (strpos($uriPath, $fullUriPath) !== false) {
             return;
         }
 
