@@ -50,6 +50,12 @@ class RedirectToFullNodeUrlComponent implements ComponentInterface
             return;
         }
 
+        $requestedUriPath = $componentContext->getHttpRequest()->getUri()->getPath();
+
+        if (strpos($requestedUriPath, '.html') === false) {
+            return;
+        }
+
         /** @var NodeInterface $node */
         $node = $this->nodeConverter->convertFrom($matchResults['node']);
 
@@ -62,13 +68,16 @@ class RedirectToFullNodeUrlComponent implements ComponentInterface
             return;
         }
 
-        $uriPath = $componentContext->getHttpRequest()->getUri()->getPath();
+        $requestedUriPath = str_replace('.html', '', $requestedUriPath);
+        $requestedUriPathParts = explode('@', $requestedUriPath);
+        $requestedUriPathWithoutContext = $requestedUriPathParts[0];
+        $requestedUriPathWithoutContext = trim($requestedUriPathWithoutContext, '/');
 
-        if (strpos($uriPath, $fullUriPath) !== false) {
+        if ($requestedUriPathWithoutContext === $fullUriPath) {
             return;
         }
 
-        if (strpos($uriPath, '.html') === false) {
+        if (strstr($requestedUriPathWithoutContext, '/') === '/' . $fullUriPath) {
             return;
         }
 
