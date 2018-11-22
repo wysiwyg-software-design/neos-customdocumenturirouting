@@ -57,7 +57,7 @@ class RedirectToFullNodeUrlComponent implements ComponentInterface
         }
 
         /** @var NodeInterface $node */
-        $node = $this->nodeConverter->convertFrom($matchResults['node']);
+        $node = $this->nodeConverter->convertFrom($matchResults['node'], NodeInterface::class);
 
         if (!$node->getNodeType()->isOfType($this->mixinNodeTypeName)) {
             return;
